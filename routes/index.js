@@ -10,7 +10,7 @@ router.get('/', async function (req, res, next) {
 
 });
 
-router.post('/', async function (req, res, next) {
+router.post('/calculate', async function (req, res, next) {
   try {
     const { price } = req.body
     let result = {}
@@ -43,6 +43,7 @@ router.post('/', async function (req, res, next) {
 
     for (let index = 0; index < result.length; index++) {
       result[index]['changedPrice'] = Number(result[index].skfiyat['_text']) + Number(price)
+      result[index]['inputPrice'] = Number(price)
     }
     res.render('index', {result: result, isLoad: ""});
 
