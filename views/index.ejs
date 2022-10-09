@@ -9,8 +9,25 @@
 </head>
 
 <body>
-  <h4>Lütfen Bekleyiniz</h4>
-  <table class="table">
+  <h4>E-Commercial API Logs</h4>
+  <div class="container-fluid">
+    <div class="row justify-content-start">
+      <div class="col col-lg-4 p-0">
+        <form action="/" method="post">
+          <div class="input-group">
+            <label for="price"></label>
+            <input type="number" class="form-control" placeholder="Lütfen fiyat artırımını giriniz..."
+              aria-label="price" aria-describedby="basic-addon2" name="price">
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary" type="submit" onclick="isLoad()">Hesapla</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <h5 class="my-3" id="is_load"><%= isLoad %></h5>
+  <table class="table mt-4">
     <thead class="thead-dark">
       <tr>
         <th scope="col">#</th>
@@ -19,6 +36,7 @@
         <th scope="col">Ürün Adı</th>
         <th scope="col">KDV</th>
         <th scope="col">SK Fiyat</th>
+        <th scope="col">Artırılmış Fiyat</th>
       </tr>
     </thead>
     <tbody>
@@ -30,6 +48,7 @@
           <td><%= result[i].Baslik['_cdata'] %> </td>
           <td><%= result[i].KDV['_text'] %>  %</td>
           <td>₺ <%= result[i].skfiyat['_text'] %></td>
+          <td>₺ <%= result[i].changedPrice %></td>
         </tr>
       <% } %>
     </tbody>
@@ -47,3 +66,8 @@
 </body>
 
 </html>
+<script>
+  const isLoad = () => {
+    document.getElementById('is_load').innerHTML = "Lütfen Bekleyiniz..."
+  }
+</script>
